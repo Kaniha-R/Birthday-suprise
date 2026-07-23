@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Divasini 🎂</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ LOADING SCREEN ============ -->
+<div id="loader" aria-hidden="true">
+  <div class="loader-inner">
+    <div class="loader-cake">🎂</div>
+    <p class="loader-text">wrapping up something special<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
+    <div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div>
+  </div>
+</div>
+
+<!-- ============ AMBIENT LAYERS (present on every section) ============ -->
+<div class="ambient-layer" id="ambientHearts" aria-hidden="true"></div>
+<div class="ambient-layer" id="ambientSparkles" aria-hidden="true"></div>
+<div class="cursor-trail" id="cursorTrail" aria-hidden="true"></div>
+
+<!-- ============ TOP CONTROLS ============ -->
+<div class="top-controls">
+  <button class="ctrl-btn" id="themeToggle" aria-label="Toggle light and dark mode" title="Toggle theme">🌙</button>
+  <button class="ctrl-btn" id="musicToggle" aria-label="Toggle music" title="Toggle music">🔈</button>
+  <div class="progress-pill" id="progressPill" title="Surprises unlocked">
+    <span id="progressCount">0</span>/<span id="progressTotal">6</span> ✨
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<section id="hero" class="hero">
+  <div class="hero-bg">
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+    <div class="blob blob-c"></div>
+    <canvas id="constellation"></canvas>
+  </div>
+  <div class="balloons-field" id="heroBalloons" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <p class="eyebrow">a small corner of the internet, just for you</p>
+    <h1 class="hero-title" id="typedTitle" aria-live="polite"></h1>
+    <p class="hero-sub reveal-fade">A special surprise made with lots of love.</p>
+    <p class="hero-date reveal-fade">🎈 24 . 07 . 2007 🎈</p>
+    <button class="start-btn" id="startBtn">
+      <span>Start the Surprise</span>
+      <span class="start-btn-icon">✨</span>
+    </button>
+  </div>
+  <div class="scroll-hint" id="scrollHint">
+    <span>scroll for more magic</span>
+    <div class="scroll-arrow">↓</div>
+  </div>
+</section>
+
+<!-- ============ SECTION 1 — BIRTHDAY MESSAGE ============ -->
+<section id="message" class="section">
+  <div class="section-inner narrow">
+    <p class="section-eyebrow">for the birthday girl</p>
+    <h2 class="section-title">A little letter, before everything else</h2>
+    <div class="glass-card birthday-card">
+      <div class="card-corner">🌸</div>
+      <p class="card-text anim-line">Dear Divasini,</p>
+      <p class="card-text anim-line">Some people just make college feel lighter — you were that person for me. Every ridiculous inside joke, every last-minute exam panic, every canteen samosa shared between classes, somehow made the whole thing feel like an adventure instead of a routine.</p>
+      <p class="card-text anim-line">Today isn't just another date on the calendar. It's the day the world got a little brighter, a little kinder, and a lot more fun — because it got you in it.</p>
+      <p class="card-text anim-line">So here's a whole website built out of pure, unfiltered affection, terrible puns, and every memory I could fit in. Consider it my way of saying thank you for being exactly who you are.</p>
+      <p class="card-signoff anim-line">With so much love,<br><span>Kaniha</span> 🤍</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 2 — MEMORY GALLERY ============ -->
+<section id="gallery" class="section">
+  <div class="section-inner">
+    <p class="section-eyebrow">flip through</p>
+    <h2 class="section-title">Our Beautiful College Memories ❤️</h2>
+    <div class="gallery-controls">
+      <button class="pill-btn" id="slideshowBtn">▶ Slideshow</button>
+    </div>
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+  <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Previous">‹</button>
+  <div class="lightbox-frame">
+    <div class="lightbox-img" id="lightboxImg"></div>
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+  </div>
+  <button class="lightbox-nav next" id="lightboxNext" aria-label="Next">›</button>
+</div>
+
+<!-- ============ SECTION 4 — GIFT HUNT ============ -->
+<section id="gifthunt" class="section">
+  <div class="section-inner narrow center-text">
+    <p class="section-eyebrow">game one</p>
+    <h2 class="section-title">Find Your Gift 🎁</h2>
+    <p class="section-desc">One of these nine boxes is hiding something real. The rest are just here to mess with you.</p>
+    <div class="gift-grid" id="giftGrid"></div>
+    <p class="gift-hint" id="giftHint">&nbsp;</p>
+  </div>
+</section>
+
+<!-- Gift popup -->
+<div class="popup-overlay" id="giftPopup">
+  <div class="popup-card gift-popup-card">
+    <button class="popup-close" data-close-popup="giftPopup">✕</button>
+    <div class="popup-emoji">🎉</div>
+    <h3>Congratulations Divasini!</h3>
+    <p>You found your birthday gift!</p>
+    <p class="popup-body">This gift is from me. Thank you for being one of the best friends I could ever ask for. I hope today is filled with happiness, laughter, love, success, and lots of cake.</p>
+    <p class="popup-body">Enjoy your real birthday gift waiting for you 🎁</p>
+    <p class="popup-body"><em>Happy Birthday once again ❤️</em></p>
+    <p class="popup-sign">From<br><strong>Kaniha</strong></p>
+  </div>
+</div>
+
+<!-- ============ SECTION 5 — MINI GAMES ============ -->
+<section id="games" class="section">
+  <div class="section-inner">
+    <p class="section-eyebrow">more games</p>
+    <h2 class="section-title">A Whole Arcade, Just Because</h2>
+
+    <!-- Game 1: Pop the balloons -->
+    <div class="game-card" id="game-balloons">
+      <div class="game-head">
+        <h3>🎈 Pop the Balloons</h3>
+        <span class="game-score">Popped: <span id="balloonScore">0</span>/<span id="balloonTotal">15</span></span>
+      </div>
+      <p class="game-desc">Pop every balloon before they float away.</p>
+      <div class="balloon-stage" id="balloonStage"></div>
+      <button class="pill-btn" id="balloonReset">Reset Balloons</button>
+    </div>
+
+    <!-- Game 2: Friendship Quiz -->
+    <div class="game-card" id="game-quiz">
+      <div class="game-head">
+        <h3>💌 Friendship Quiz</h3>
+        <span class="game-score" id="quizProgress">Question 1/3</span>
+      </div>
+      <div id="quizBody"></div>
+    </div>
+
+    <!-- Game 3: Catch the hearts -->
+    <div class="game-card" id="game-catch">
+      <div class="game-head">
+        <h3>💗 Catch the Hearts</h3>
+        <span class="game-score">Score: <span id="catchScore">0</span>/100</span>
+      </div>
+      <p class="game-desc">Use ← and → (or drag on mobile) to move the basket and catch falling hearts.</p>
+      <div class="catch-stage" id="catchStage">
+        <div class="catch-basket" id="catchBasket">🧺</div>
+        <p class="catch-secret" id="catchSecret"></p>
+        <button class="pill-btn catch-start" id="catchStart">Start Catching</button>
+      </div>
+    </div>
+
+    <!-- Game 4: Memory Match -->
+    <div class="game-card" id="game-memory">
+      <div class="game-head">
+        <h3>🧠 Memory Match</h3>
+        <span class="game-score">Moves: <span id="memoryMoves">0</span></span>
+      </div>
+      <div class="memory-grid" id="memoryGrid"></div>
+    </div>
+
+    <!-- Game 5: Blow the candle -->
+    <div class="game-card" id="game-candle">
+      <div class="game-head"><h3>🕯️ Blow the Candle</h3></div>
+      <div class="cake-stage">
+        <div class="fireworks-layer" id="fireworksLayer"></div>
+        <div class="cake" id="cakeEl">
+          <div class="candle"><div class="flame" id="flame1"></div></div>
+          <div class="candle"><div class="flame" id="flame2"></div></div>
+          <div class="candle"><div class="flame" id="flame3"></div></div>
+          <div class="cake-top"></div>
+          <div class="cake-mid"></div>
+          <div class="cake-base"></div>
+        </div>
+      </div>
+      <button class="pill-btn" id="blowBtn">Blow the Candles 💨</button>
+    </div>
+
+    <!-- Game 6: Spin the wheel -->
+    <div class="game-card" id="game-wheel">
+      <div class="game-head"><h3>🎡 Spin the Wheel</h3></div>
+      <div class="wheel-wrap">
+        <div class="wheel-pointer">▼</div>
+        <div class="wheel" id="wheelEl"></div>
+      </div>
+      <button class="pill-btn" id="spinBtn">Spin!</button>
+    </div>
+  </div>
+</section>
+
+<!-- Quiz result / Wheel prize / Memory popups reuse generic popup -->
+<div class="popup-overlay" id="genericPopup">
+  <div class="popup-card">
+    <button class="popup-close" data-close-popup="genericPopup">✕</button>
+    <div class="popup-emoji" id="genericEmoji">🎉</div>
+    <h3 id="genericTitle"></h3>
+    <p class="popup-body" id="genericBody"></p>
+  </div>
+</div>
+
+<!-- ============ SECTION 6 — OPEN LETTERS ============ -->
+<section id="letters" class="section">
+  <div class="section-inner">
+    <p class="section-eyebrow">open when you're ready</p>
+    <h2 class="section-title">Five Little Letters</h2>
+    <div class="envelope-row" id="envelopeRow"></div>
+  </div>
+</section>
+
+<!-- ============ SECTION 7 — REASONS ============ -->
+<section id="reasons" class="section">
+  <div class="section-inner">
+    <p class="section-eyebrow">just a few of many</p>
+    <h2 class="section-title">Reasons You're Amazing</h2>
+    <div class="reasons-grid" id="reasonsGrid"></div>
+  </div>
+</section>
+
+<!-- ============ SECTION 8 — SECRET ENDING ============ -->
+<section id="secretGate" class="section">
+  <div class="section-inner narrow center-text">
+    <p class="section-eyebrow">the finale</p>
+    <h2 class="section-title">One Last Surprise</h2>
+    <p class="section-desc">Complete all 6 games above to unlock it — you're at <strong><span id="gateCount">0</span>/6</strong>.</p>
+    <div class="gate-track"><div class="gate-fill" id="gateFill"></div></div>
+    <button class="start-btn" id="unlockBtn" disabled>🔒 Locked — keep playing!</button>
+  </div>
+</section>
+
+<section id="finale" class="section finale-section" hidden>
+  <div class="finale-canvas" id="finaleCanvas" aria-hidden="true"></div>
+  <div class="section-inner narrow center-text">
+    <div class="finale-collage" id="finaleCollage"></div>
+    <h2 class="finale-title">Happy Birthday Divasini ❤️</h2>
+    <p class="finale-text">May your life always be filled with happiness.</p>
+    <p class="finale-text">Thank you for being my amazing college friend.</p>
+    <p class="finale-text">I hope our friendship lasts forever.</p>
+    <p class="finale-sign">Love,<br>Kaniha ❤️</p>
+    <button class="pill-btn" id="replayBtn">Play the fireworks again 🎆</button>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <p>made with 🩷 by Kaniha, for Divasini — 24.07</p>
+</footer>
+
+<!-- Confetti canvas (full screen overlay) -->
+<canvas id="confettiCanvas" aria-hidden="true"></canvas>
+
+<script src="script.js"></script>
+</body>
+</html>
