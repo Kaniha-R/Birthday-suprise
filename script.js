@@ -607,10 +607,37 @@
      GAME 2 — FRIENDSHIP QUIZ
      ========================================================= */
   const QUIZ = [
-    { q: 'Who is today\'s Birthday Queen?', options: ['Divasini, obviously 👑', 'A random stranger', 'Me (definitely not)'], answer: 0, fun: 'Correct! Crown officially assigned. 👑' },
-    { q: 'What\'s the favorite college memory?', options: ['That one canteen debate that lasted 2 hours', 'Sitting quietly in silence', 'Studying 24/7'], answer: 0, fun: 'Yes! We are still not over that debate. 😂' },
-    { q: 'Who always smiles the brightest?', options: ['Someone we don\'t know', 'Divasini, hands down', 'A textbook'], answer: 1, fun: 'Obviously. Certified sunshine. ✨' }
-  ];
+  {
+    q: "Who is today's Birthday Queen?",
+    options: [
+      "Divasini, obviously 👑",
+      "A random stranger",
+      "Me (definitely not 😂)"
+    ],
+    answer: 0,
+    fun: "Correct! The Birthday Queen is Divasini! 👑🎉"
+  },
+  {
+    q: "What's our favorite college memory?",
+    options: [
+      "Endless canteen gossip with chips, rolls & paal bun 😂",
+      "Sitting quietly without talking 🤐",
+      "Listening carefully to every lecture 📚"
+    ],
+    answer: 0,
+    fun: "Exactly! Those canteen gossip sessions were unforgettable! 😂❤️"
+  },
+  {
+    q: "Who always has the cutest smile?",
+    options: [
+      "Someone we don't know 🤔",
+      "Divasini, without any doubt 😊",
+      "Our attendance sheet 😂"
+    ],
+    answer: 1,
+    fun: "Of course! Divasini's smile always wins! ✨💖"
+  }
+];
   let quizIndex = 0;
   const quizBody = $('#quizBody');
   function renderQuiz() {
